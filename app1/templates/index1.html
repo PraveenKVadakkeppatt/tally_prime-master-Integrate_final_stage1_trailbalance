@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <title>Tally Prime</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" />
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css" />
+ <!-- Reset styles -->
+ <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css" />
+ <!-- Google Fonts Muli -->
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="{% static 'styles.css' %} ">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+ <title>Tally Prime</title>
+ <!--favicon-->
+ <link rel="icon" href="{% static 'assets/images/favicon-32x32.png' %}" type="image/png" />
+ <!-- Vector CSS -->
+ <link href="{% static 'assets/plugins/vectormap/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet" />
+ <!--plugins-->
+ <link href="{% static 'assets/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
+ <link href="{% static 'assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet" />
+ <link href="{% static 'assets/plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet" />
+ <!-- loader-->
+ <link href="{% static 'assets/css/pace.min.css' %}" rel="stylesheet" />
+ <script src="{% static 'assets/js/pace.min.js' %}"></script>
+ <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+ <!-- Icons CSS -->
+ <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}" />
+ <!-- App CSS -->
+ <link rel="stylesheet" href="{% static 'assets/css/app.css' %}" />
+ <style>
+     a {
+         font-family: "Poppins", sans-serif;
+     }
+    
+       .btns_prnt{
+         width: 350%;
+        
+         background-color: rgba(240, 248, 255, 0);
+         border: none;
+         /* padding: 6px; */
+     
+     }
+     .btns_prnt:hover{
+         background-color:rgb(44, 158, 187);
+         color: rgb(15, 14, 14);
+     }
+ </style>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <!-- <script>
+     $(document).ready(function() {
+         var $select1 = $('#select1'),
+             $select2 = $('#select2'),
+             $select3 = $('#name'),
+             $options = $select2.find('option'),
+             $options1 = $select3.find('option');
+         $select1.on('change', function() {
+             $select2.html($options.filter('[text="' + this.value + '"]'));
+             $select3.html($options1.filter('[text="' + this.value + '"]'));
+         }).trigger('change');
+     });
+ </script> -->
+ <script>
+     
+     $(document).ready(function() {
+         var $select1 = $('#select1'),
+             $select2 = $('#select2'),
+             $select3 = $('#name'),
+             $options = $select2.find('option'),
+             $options1 = $select3.find('option');
+         $select1.on('change', function() {
+             $select2.html($options.filter('[text="' + this.value + '"]'));
+             $select3.html($options1.filter('[text="' + this.value + '"]'));
+         }).trigger('change');
+         const d1='Apr 1 2022';
+         const d2='Mar 1 2023';
+         //let text = d1.toDateString();
+         //alert(text);
+         document.getElementById("currentDate").innerHTML=new Date().toDateString();
+         document.getElementById("dateP1").innerHTML=d1;
+         document.getElementById("dateP2").innerHTML=d2;
+        
+         var table = document.getElementById("table");
+         var cells = table.getElementsByTagName("td");
+         for (var i = 0; i < cells.length; i++) {
+             if(i == 0){
+                 document.getElementById("compName").innerHTML= cells[0].innerText;
+                 //document.getElementById("compId").innerHTML= cells[1].innerText;
+                 
+                 //alert(cells[1].innerText);
+                 setName(cells[0].innerText, cells[1].innerText);
+             }
+          }
+     });
+     function getVal(route){
+        window.location.href=route+"/"+document.getElementById('cid').innerHTML;
+                
+     }
+
+     function setDate(){
+         document.getElementById('hdnDate').value= 1;
+         
+         document.getElementById("currentDate").innerHTML= new Date(document.getElementById('enterDate').value).toDateString();
+
+     }
+     function setPeriod(){
+         document.getElementById("dateP1").innerHTML= new Date(document.getElementById('enterPeriod1').value).toDateString();
+         document.getElementById("dateP2").innerHTML= new Date(document.getElementById('enterPeriod2').value).toDateString();
+
+         
+     }
+ </script>
+    </head>
+    <body style="background-color: #213b52;">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark ">
+                <div class="container">
+ <a class="navbar-brand" href="#">Tally Prime</a>
+                                         <!--   <img src="/images/MarkupTag-white-logo.png" alt="Logo" class="img-fluid" /> -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <!-- <a class="nav-link active" href="#">Home</a> -->
+                            </li>
+                            <li class="nav-item">
+                                <!-- <a class="nav-link" href="#">Features</a> -->
+                            </li>
+                            <li class="nav-item">
+                                <!-- <a class="nav-link" href="#">About Us</a> -->
+                            </li>
+                            <li class="nav-item dropdown">
+                                <!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    View More
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Web Development</a></li>
+                                    <li><a class="dropdown-item" href="#">Web Designing</a></li>
+                                    <li><a class="dropdown-item" href="#">Android Development</a></li>
+                                </ul> -->
+                            </li>
+                            <li class="nav-item">
+                                <!-- <a class="nav-link" href="#">Contact Us</a> -->
+                            </li>
+                        </ul>
+                        <div class="d-flex">
+                            <!-- <div class="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Our Products
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" href="#">Product One</a></li>
+                                    <li><a class="dropdown-item" href="#">Product Two</a></li>
+                                    <li><a class="dropdown-item" href="#">Product Three</a></li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-light ms-3">Login</button> -->
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{% url 'index1' %}">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Contact Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'createcompany' %}">Company</a>
+                                </li>
+                             
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        {% block body %} {% endblock %}
+        <!-- Bootstrap JS -->
+        <script src="https://www.markuptag.com/bootstrap/5/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
