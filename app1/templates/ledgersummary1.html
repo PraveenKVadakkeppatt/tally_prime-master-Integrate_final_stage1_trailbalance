@@ -76,44 +76,31 @@
             </div>
 
             <div style="overflow: scroll ;max-height: 70vh; width: 100%;background-color:rgba(0,0,0,0.4); ">
-              <table  class="table " style="background-color: rgba(33,57,77,255);color:#fff; " border="1" id="tb1">
-                <tr >
-                    
-                    
-                    <th>     <table   style="width: 100%;"  id="table">
-                        <thead>
-                            <tr>
+                <table class="table ">
                     <div>
                        
                         
                        <th></th>
                        
-                        <th scope="col" class="col-sm3 m-0 p-0" style="text-align: center;"> Credit&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <th scope="col" class="col-sm3 m-0 p-0" style="text-align: center;"> Credit &nbsp
                          Debit  </th>
-                         <th></th>
                          <th class="col-sm2 m-0 p-0">Closing Balances</th>
                        
                       
                         </div>
-                     
-                    </tr> 
-                  </thead>
-                      <tbody>
-                        <td scope="col">Opening Balance</td>
+                      <tr>
+                        <th scope="col">Opening Balance</th>
                         <th></th>
                         <th></th>
-                    
-                        <td>{{ vch.openingbal }}Dr</td>
                       </tr>
                      
                       
                       <tr class="tr1">
                       
                         
-                        <td scope="row"><a href="{% url 'ledgervoucher' vch.id %}">April</a></td>
-                        <td class="col-sm-2 m-0 p-0" style="text-align: center;">{{ vch.credit }}  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp {{ vch.debit }}
+                        <td scope="row"><a href="{% url 'ledgervoucher1' vch.id %}">April</a></td>
+                        <td class="col-sm-2 m-0 p-0" style="text-align: center;">{{ vch.credit }}  &nbsp&nbsp {{ vch.debit }}
                        </td>
-                       <th></th>
                        <td>{{ cltot }}Dr</td>
 
                       
@@ -122,70 +109,58 @@
                         <td>May</td>
                         <td></td>
                         <td></td>
-                        <th></th>
                       </tr>
                       <tr class="tr1">
                         <td >June</td>
                         <td></td>
                         <td></td>
-                        <th></th>
                       </tr>
                       <tr class="tr1">
                         <td>July</td>
                         <td></td>
                         <td></td>
-                        <th></th>
                       </tr>
                       <tr class="tr1">
                         <td>August</td>
                         <td></td>
                         <td></td>
-                        <th></th>
                       </tr>
                       <tr class="tr1">
                         <td>September</td>
                         <td></td>
                         <td></td>
-                        <th></th>
                       </tr>
                       <tr class="tr1">
                         <td>October</td>
                         <td></td>
                         <td></td>
-                        <th></th>
                       </tr>
                       <tr class="tr1">
                         <td>November</td>
                         <td></td>
                         <td></td>
-                        <th></th>
                       </tr>
                       <tr class="tr1">
                         <td>December</td>
                         <td></td>
                         <td></td>
-                        <th></th>
                       </tr>
                       <tr class="tr1">
                         <td>January</td>
                         <td></td>
                         <td></td>
-                        <th></th>
                       </tr>
                       <tr class="tr1">
                         <td>February</td>
                         <td></td>
                         <td></td>
-                        <th></th>
                       </tr>
                       <tr class="tr1">
                         <td>March</td>
                         <td></td>
                         <td></td>
-                        <th></th>
                       </tr>
                       <tr>
-                        <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -193,8 +168,7 @@
                      
                       <tr>
                         <th>Grand Total</th>
-                        <td style="text-align: center;">{{ sum1 }} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp {{ sum2 }}</td>
-                        <td></td>
+                        <td style="text-align: center;">{{ sum1 }} &nbsp&nbsp {{ sum2 }}</td>
                         <td>{{ cltot }}Dr</td>
                         
                       </tr>
@@ -207,15 +181,7 @@
                      
                       
 
-                
-                    </tbody>
-                  </table>
-              </th>
-                
-                
-  
-                  </table>
-       
+                </table>
 
 
             </div>
@@ -223,109 +189,6 @@
         </div> 
         </div>
      </div>
-     {% for vouch in vouch %}
-     <div class="bottom text-center d-flex justify-content-between">
-      <button class="btn border"><a href="{% url 'trialbalance' %}">QUIT</a></button>
-      
-      <button type="button" class="btn border" onclick="myFunction()">SELECT</button>
      
-    
-      <button class="btn border"  onclick="removeSelectedRow()">REMOVE LINE</button>
-      <button class="btn border"><a href="{% url 'ledgersummary' vouch.id  %}">RESTORE LINE</a></button>
-  </div>
-
-</div>
-{% endfor %} 
-<script>
-    $(document).ready(function($) {
-        $(".table-row").dblclick(function() {
-            window.document.location = $(this).data("href");
-        });
-    });
-</script>
-<script>
-            
-    var index;  // variable to set the selected row index
-    function getSelectedRow()
-    {
-        var table = document.getElementById("table");
-        for(var i = 1; i < table.rows.length; i++)
-        {
-            table.rows[i].onclick = function()
-            {
-                // clear the selected from the previous selected row
-                // the first time index is undefined
-                if(typeof index !== "undefined"){
-                    table.rows[index].classList.toggle("selected");
-                }
-               
-                index = this.rowIndex;
-                this.classList.toggle("selected");
-
-            };
-        }
-            
-    }
-
-
-    getSelectedRow();
-
-    
-
-    
-    
-    
-    
-</script>
-
-<script>
-
-   
-function myFunction() {
- var se = document.getElementsByClassName('selected');
- se[0].style.backgroundColor = "lightblue";
-    
-}
-    </script>
-
-
-<!-- <script>
-        
-        var rIndex,
-            table = document.getElementById("table");
-        
-        
-        function selectedRowToInput()
-        {
-            
-            for(var i = 1; i < table.rows.length; i++)
-            {
-                table.rows[i].onclick = function()
-                {
-                  // get the seected row index
-                  rIndex = this.rowIndex;
-                  this.classList.toggle("selected");
-                
-                };
-            }
-        }
-        selectedRowToInput();
-        
-        
-        
-        function removeSelectedRow()
-        {
-            table.deleteRow(rIndex);
-            
-        }
-    </script> -->
-
-<script>
-function removeSelectedRow()
-        {
-            table.deleteRow(index);
-            
-        }
-</script>
     
     {% endblock %}

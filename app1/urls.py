@@ -664,7 +664,7 @@ urlpatterns = [
     path('alter_payrol_add_voucher_edit/<int:pk>',views.alter_payrol_add_voucher_edit,name='alter_payrol_add_voucher_edit'),
     path('alter_payrol_add_voucher_edit2/<int:pk>',views.alter_payrol_add_voucher_edit2,name='alter_payrol_add_voucher_edit2'),   
 
-
+    # ----------------------------------------------------Trialbalance-------------------------------------------------------------
     # ----------------------------------------------------AMAYA-------------------------------------------------------------
 
     path('groupsummery',views.groupsummery,name='groupsummery'),
@@ -689,5 +689,27 @@ urlpatterns = [
     path('cgroupsummary',views.cgroupsummary,name='cgroupsummary'),
     path('cgroup',views.cgroup,name='cgroup'),
     path('cledgersummary/<int:pk>',views.cledgersummary,name='cledgersummary'),
-    path('cledgervoucher/<int:pk>',views.cledgervoucher,name='cledgervoucher')
+    path('cledgervoucher/<int:pk>',views.cledgervoucher,name='cledgervoucher'),
+
+
+
+    # ----------------------------------------------------Jerin-------------------------------------------------------------
+
+
+    path('incgroupsummary',views.incgroupsummary,name='incgroupsummary'),
+    path('inincvoucher',views.inincvoucher,name='inincvoucher'),
+    path('inincvouchadd',views.inincvouchadd,name='inincvouchadd'),
+    path('incledgersummary/<int:pk>',views.incledgersummary,name='incledgersummary'),
+    path('incledgervoucher/<int:pk>',views.incledgervoucher,name='incledgervoucher'),
+    
+    path('ininxvoucher',views.ininxvoucher,name='ininxvoucher'),
+    path('ininxvouchadd',views.ininxvouchadd,name='ininxvouchadd'),
+    path('inxgroupsummary',views.inxgroupsummary,name='inxgroupsummary'),
+    path('inxledgersummary/<int:pk>',views.inxledgersummary,name='inxledgersummary'),
+    path('inxledgervoucher/<int:pk>',views.inxledgervoucher,name='inxledgervoucher'),
+    path('groupsummery1',views.groupsummery1,name='groupsummery1'),
+    path('ledgersummary1/<int:pk>',views.ledgersummary1,name='ledgersummary1'),
+    path('voucheradd1',views.voucheradd1,name='voucheradd1'),
+    path('vouchadd1',views.vouchadd1,name='vouchadd1'),
+    path('ledgervoucher1/<int:pk>',views.ledgervoucher1,name='ledgervoucher1'),
      ]
