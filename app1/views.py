@@ -10702,6 +10702,49 @@ def trialbalance(request):
 
         for b in totinx:
             sum7+=b.idebit   
+        total=BDvouchert.objects.filter(company_id=t_id)
+
+        brd1=0
+        brd2=0
+        for a in total:
+            brd1+=a.credit
+
+        for b in total:
+            brd2+=b.debit    
+
+        tots=Svouchert.objects.filter(company_id=t_id)
+
+
+        sal3=0
+        sal4=0
+
+        for a in tots:
+            sal3+=a.icredit
+
+        for b in tots:
+            sal4+=b.idebit
+
+        totp=Pvouchert.objects.filter(company_id=t_id)
+
+        pur6=0
+        pur7=0
+
+        for a in totp:
+            pur6+=a.icredit
+
+        for b in totp:
+            pur7+=b.idebit 
+
+        totDi=DIvouchert.objects.filter(company_id=t_id)
+
+        sum8=0
+        sum9=0
+
+        for a in totDi:
+            sum8+=a.credit
+
+        for b in totDi:
+            sum9+=b.debit
 
         cpsum1=22000 
         cpsum2=45000
@@ -10724,8 +10767,8 @@ def trialbalance(request):
         dirin=65000
         dirin2=35000
 
-        crtot=sum1+sum3+cpsum1+loan+crl+fxa+invst+cuas+brdv+sala+pur+dirin+sum6
-        drtot=sum2+sum4+sum7+cpsum2+loan2+crl2+fxa2+invst2+cuas2+brdv2+sala2+pur2+dirin2
+        crtot=sum1+sum3+cpsum1+loan+crl+fxa+invst+cuas+brdv+sala+pur+dirin+sum6+brd1+sal3+pur6
+        drtot=sum2+sum4+sum7+cpsum2+loan2+crl2+fxa2+invst2+cuas2+brdv2+sala2+pur2+dirin2+brd2+sal4+pur7
         diff=crtot-drtot
 
 
@@ -10733,10 +10776,10 @@ def trialbalance(request):
 
 
 
-        context={'total':total,'totinc':totinc,'sum1':sum1,'sum2':sum2,'sum3':sum3,'sm3':sm3,'sum4':sum4,'sum6':sum6,'sum7':sum7,'sum8':sum8,'totinx':totinx,
+        context={'total':total,'totinc':totinc,'sum1':sum1,'sum2':sum2,'sum3':sum3,'sm3':sm3,'sum4':sum4,'sum6':sum6,'sum7':sum7,'sum8':sum8,'sum9':sum9,'totinx':totinx,
         'tot':tot,'cltot':cltot,'clsum':clsum,'ctot':ctot,'cpsum1':cpsum1,'cpsum2':cpsum2,'loan':loan,'loan2':loan2,'crl':crl,'crl2':crl2,'fxa':fxa,'fxa2':fxa2,
-        'invst':invst,'invst2':invst2,'brdv':brdv,'sala':sala,'sala2':sala2,'pur':pur,'pur2':pur2,'dirin':dirin,
-        'dirin2':dirin2,'brdv2':brdv2,'cuas':cuas,'cuas2':cuas2,
+        'invst':invst,'invst2':invst2,'brdv':brdv,'sala':sala,'sala2':sala2,'pur':pur,'pur2':pur2,'dirin':dirin,'totp':totp,
+        'dirin2':dirin2,'brdv2':brdv2,'cuas':cuas,'cuas2':cuas2,'tots':tots,'brd1':brd1,'brd2':brd2,'sal3':sal3,'sal4':sal4,'pur6':pur6,'pur7':pur7,
         'crtot':crtot,'drtot':drtot,'diff':diff}
         return render(request,'trialbalance.html',context)
     return redirect('/')
@@ -11075,3 +11118,445 @@ def ledgervoucher1(request,pk):
     context={'vch':vch,'vouch':vouch,'sum1':sum1,'sum2':sum2,'sum3':sum3,'tot':tot,'cltot':cltot}     
     return render(request,'ledgervoucher1.html',context)      
 
+
+# ----------------------------------------Noufal/trialbalance-----------------------------------------------------------------
+def bgroupsummery(request):
+    if 't_id' in request.session:
+        if request.session.has_key('t_id'):
+            t_id = request.session['t_id']
+        else:
+            return redirect('/')
+        tally = Companies.objects.filter(id=t_id)
+   
+        vouch=BDvouchert.objects.filter(company_id=t_id)
+
+        sum1=0
+        sum2=0
+        for a in vouch:
+            sum1+=a.credit
+
+        for b in vouch:
+            sum2+=b.debit    
+
+        context={'vouch':vouch,'sum1':sum1,'sum2':sum2}    
+    return render(request,'bgroupsummary.html',context)   
+
+def bledgersummary(request,pk):
+    vch=BDvouchert.objects.get(id=pk)  
+    vouch=BDvouchert.objects.filter(id=pk)
+
+    sum1=0
+    sum2=0
+    sum3=0
+    for a in vouch:
+        sum1+=a.credit
+
+    for b in vouch:
+        sum2+=b.debit 
+
+    
+
+    for c in vouch:
+        sum3+=c.openingbal   
+
+    tot=sum1+sum2 
+    cltot=tot-sum3  
+      
+    
+    context={'vch':vch,'vouch':vouch,'sum1':sum1,'sum2':sum2,'sum3':sum3,'sum3':sum3,'tot':tot,'cltot':cltot}      
+    return render(request,'bledgermonthlySummary.html',context)    
+
+def bvoucheradd(request):
+    if 't_id' in request.session:
+        if request.session.has_key('t_id'):
+            t_id = request.session['t_id']
+        else:
+            return redirect('/')
+        tally = Companies.objects.filter(id=t_id)
+        led=tally_ledger.objects.filter(status=0)
+        led1=tally_ledger.objects.filter(company_id=t_id)
+        context={'led':led,'led1':led1}   
+    return render(request,'bvoucheradd.html',context) 
+
+def bvouchadd(request):
+    if 't_id' in request.session:
+        if request.session.has_key('t_id'):
+            t_id = request.session['t_id']
+        else:
+            return redirect('/')
+        tally = Companies.objects.filter(id=t_id)
+        if request.method == 'POST':
+            vdate=request.POST['vdate']
+            particular=request.POST['particular']
+            account=request.POST['account']
+            vouchertype=request.POST['vouchertype']
+            voucherno=request.POST['voucherno']
+            openingbal=request.POST['openingbal']
+            
+            
+            debit=request.POST['debit']
+        
+            credit=request.POST['credit']
+            
+
+            vou=BDvouchert(
+                vdate=vdate,
+                particular=particular,
+                account=account,
+                vouchertype=vouchertype,
+                voucherno=voucherno,
+                debit=debit,
+                credit=credit,
+                openingbal=openingbal,
+                company_id=t_id,
+                
+
+            )
+            vou.save()
+    return redirect('bvoucheradd')
+
+def bledgervoucher(request,pk):
+    vch=BDvouchert.objects.get(id=pk)
+    vouch=BDvouchert.objects.filter(id=pk)
+
+    sum1=0
+    sum2=0
+    sum3=0
+
+    for a in vouch:
+        sum1+=a.credit
+
+    for b in vouch:
+        sum2+=b.debit  
+
+    for c in vouch:
+        sum3+=c.openingbal   
+
+    tot=sum1+sum2 
+    cltot=tot-sum3  
+
+        
+    context={'vch':vch,'vouch':vouch,'sum1':sum1,'sum2':sum2,'sum3':sum3,'tot':tot,'cltot':cltot}     
+    return render(request,'bledgervoucher.html',context)
+
+def DIgroupsummary(request):
+    if 't_id' in request.session:
+        if request.session.has_key('t_id'):
+            t_id = request.session['t_id']
+        else:
+            return redirect('/')
+        tally = Companies.objects.filter(id=t_id) 
+        vouch=DIvouchert.objects.filter(company_id=t_id)
+        sum1=0
+        sum2=0
+        for a in vouch:
+            sum1+=a.credit
+
+        for b in vouch:
+            sum2+=b.debit
+
+        context={'vouch':vouch,'sum1':sum1,'sum2':sum2}        
+
+    return render(request,'dgroupsummary.html',context)  
+
+def DIvoucher(request):
+    if 't_id' in request.session:
+        if request.session.has_key('t_id'):
+            t_id = request.session['t_id']
+        else:
+            return redirect('/')
+        tally = Companies.objects.filter(id=t_id)
+        led=tally_ledger.objects.filter(status=0)
+        led1=tally_ledger.objects.filter(company_id=t_id)
+        context={'led':led,'led1':led1}   
+    return render(request,'DIvoucher.html',context) 
+
+def DIvouchadd(request):
+    if 't_id' in request.session:
+        if request.session.has_key('t_id'):
+            t_id = request.session['t_id']
+        else:
+            return redirect('/')
+        tally = Companies.objects.filter(id=t_id)
+        if request.method == 'POST':
+            ivdat=request.POST['vdate']
+            iparticular=request.POST['particular']
+            iaccount=request.POST['account']
+            ivouchertype=request.POST['vouchertype']
+            ivoucherno=request.POST['voucherno']
+            
+            idebit=request.POST['debit']
+        
+            icredit=request.POST['credit']
+            
+
+            voui=DIvouchert(
+                vdate=ivdat,
+                particular=iparticular,
+                account=iaccount,
+                vouchertype=ivouchertype,
+                voucherno=ivoucherno,
+                debit=idebit,
+                credit=icredit,
+                company_id=t_id,
+                
+
+            )
+            voui.save()
+        return redirect('DIvoucher') 
+
+def DIledgervoucher(request,pk):
+    vch=DIvouchert.objects.get(id=pk)
+    vouch=DIvouchert.objects.filter(id=pk)
+
+    sum1=0
+    sum2=0
+    for a in vouch:
+        sum1+=a.credit
+
+    for b in vouch:
+        sum2+=b.debit    
+
+    context={'vch':vch,'sum1':sum1,'sum2':sum2}
+    return render(request,'dledgervoucher.html',context)
+
+def DIledgersummary(request,pk):
+    vch=DIvouchert.objects.get(id=pk)
+    vouch=DIvouchert.objects.filter(id=pk)
+
+    sum1=0
+    sum2=0
+
+    for a in vouch:
+        sum1+=a.credit
+
+    for b in vouch:
+        sum2+=b.debit
+
+    clsum=sum1+sum2
+
+
+    context={'vch':vch,'vouch':vouch,'sum1':sum1,'sum2':sum2,'clsum':clsum}
+    return render(request,'dledgermonthlysummary.html',context)
+
+
+
+def pledgersummary(request,pk):
+    vch=Pvouchert.objects.get(id=pk)
+    vouch=Pvouchert.objects.filter(id=pk)
+
+    sum1=0
+    sum2=0
+
+    for a in vouch:
+        sum1+=a.icredit
+
+    for b in vouch:
+        sum2+=b.idebit
+
+    clsum=sum1+sum2
+
+
+    context={'vch':vch,'vouch':vouch,'sum1':sum1,'sum2':sum2,'clsum':clsum}
+    return render(request,'pledgermonthlysummary.html',context)
+
+def Pvoucher(request):
+    if 't_id' in request.session:
+        if request.session.has_key('t_id'):
+            t_id = request.session['t_id']
+        else:
+            return redirect('/')
+        tally = Companies.objects.filter(id=t_id)
+        led=tally_ledger.objects.filter(status=0)
+        led1=tally_ledger.objects.filter(company_id=t_id)
+        context={'led':led,'led1':led1}   
+    return render(request,'pvoucher.html',context)
+
+def Pgroupsummary(request):
+    if 't_id' in request.session:
+        if request.session.has_key('t_id'):
+            t_id = request.session['t_id']
+        else:
+            return redirect('/')
+        tally = Companies.objects.filter(id=t_id) 
+        vouch=Pvouchert.objects.filter(company_id=t_id)
+        sum1=0
+        sum2=0
+        for a in vouch:
+            sum1+=a.icredit
+
+        for b in vouch:
+            sum2+=b.idebit
+
+        context={'vouch':vouch,'sum1':sum1,'sum2':sum2}        
+
+    return render(request,'pgroupsummary.html',context)  
+
+def Pvouchadd(request):
+     if 't_id' in request.session:
+        if request.session.has_key('t_id'):
+            t_id = request.session['t_id']
+        else:
+            return redirect('/')
+        tally = Companies.objects.filter(id=t_id)
+        if request.method == 'POST':
+            ivdate=request.POST['ivdate']
+            iparticular=request.POST['iparticular']
+            iaccount=request.POST['iaccount']
+            ivouchertype=request.POST['ivouchertype']
+            ivoucherno=request.POST['ivoucherno']
+            
+            idebit=request.POST['idebit']
+        
+            icredit=request.POST['icredit']
+            
+
+            voui=Pvouchert(
+                ivdate=ivdate,
+                iparticular=iparticular,
+                iaccount=iaccount,
+                ivouchertype=ivouchertype,
+                ivoucherno=ivoucherno,
+                idebit=idebit,
+                icredit=icredit,
+                company_id=t_id
+                
+
+            )
+        voui.save()
+        return redirect('Pvoucher')    
+
+def pledgersummary(request,pk):
+    vch=Pvouchert.objects.get(id=pk)
+    vouch=Pvouchert.objects.filter(id=pk)
+
+    sum1=0
+    sum2=0
+
+    for a in vouch:
+        sum1+=a.icredit
+
+    for b in vouch:
+        sum2+=b.idebit
+
+    clsum=sum1+sum2
+
+
+    context={'vch':vch,'vouch':vouch,'sum1':sum1,'sum2':sum2,'clsum':clsum}
+    return render(request,'pledgermonthlysummary.html',context)
+
+def pledgervoucher(request,pk):
+    vch=Pvouchert.objects.get(id=pk)
+    vouch=Pvouchert.objects.filter(id=pk)
+
+    sum1=0
+    sum2=0
+    for a in vouch:
+        sum1+=a.icredit
+
+    for b in vouch:
+        sum2+=b.idebit    
+
+    context={'vch':vch,'sum1':sum1,'sum2':sum2}
+    return render(request,'pledgervoucher.html',context)
+
+def svoucher(request):
+    if 't_id' in request.session:
+        if request.session.has_key('t_id'):
+            t_id = request.session['t_id']
+        else:
+            return redirect('/')
+        tally = Companies.objects.filter(id=t_id)
+        led=tally_ledger.objects.filter(status=0)
+        led1=tally_ledger.objects.filter(company_id=t_id)
+        context={'led':led,'led1':led1}   
+    return render(request,'svoucher.html',context) 
+
+def Svouchadd(request):
+    if 't_id' in request.session:
+        if request.session.has_key('t_id'):
+            t_id = request.session['t_id']
+        else:
+            return redirect('/')
+        tally = Companies.objects.filter(id=t_id)
+        if request.method == 'POST':
+            ivdate=request.POST['ivdate']
+            iparticular=request.POST['iparticular']
+            iaccount=request.POST['iaccount']
+            ivouchertype=request.POST['ivouchertype']
+            ivoucherno=request.POST['ivoucherno']
+            
+            idebit=request.POST['idebit']
+        
+            icredit=request.POST['icredit']
+            
+
+            voui=Svouchert(
+                ivdate=ivdate,
+                iparticular=iparticular,
+                iaccount=iaccount,
+                ivouchertype=ivouchertype,
+                ivoucherno=ivoucherno,
+                idebit=idebit,
+                icredit=icredit,
+                company_id=t_id,
+                
+
+            )
+            voui.save()
+        return redirect('svoucher')
+
+def Sgroupsummary(request):
+    if 't_id' in request.session:
+        if request.session.has_key('t_id'):
+            t_id = request.session['t_id']
+        else:
+            return redirect('/')
+        tally = Companies.objects.filter(id=t_id)
+    
+        vouch=Svouchert.objects.filter(company_id=t_id)
+
+        sum1=0
+        sum2=0
+        for a in vouch:
+            sum1+=a.icredit
+            
+        for b in vouch:
+            sum2+=b.idebit
+
+        context={'vouch':vouch,'sum1':sum1,'sum2':sum2}    
+    return render(request,'sgroupsummary.html',context)
+
+def Sledgersummary(request,pk):
+    vch=Svouchert.objects.get(id=pk)
+    vouch=Svouchert.objects.filter(id=pk)
+
+    sum1=0
+    sum2=0
+
+    for a in vouch:
+        sum1+=a.icredit
+
+    for b in vouch:
+        sum2+=b.idebit 
+
+    clsum=sum1+sum2       
+        
+    context={'vch':vch,'vouch':vouch,'sum1':sum1,'sum2':sum2,'clsum':clsum}   
+    return render(request,'sledgermonthlysummary.html',context) 
+   
+def Sledgervoucher(request,pk):
+    vch=Svouchert.objects.get(id=pk)
+    vouch=Svouchert.objects.filter(id=pk)
+
+    sum1=0
+    sum2=0
+
+    for a in vouch:
+        sum1+=a.idebit
+
+    for b in vouch:
+        sum2+=b.icredit 
+
+    context={'vch':vch,'vouch':vouch,'sum1':sum1,'sum2':sum2}     
+    return render(request,'sledgervoucher.html',context)    

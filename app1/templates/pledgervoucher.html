@@ -1,0 +1,149 @@
+
+
+    {% extends 'base.html' %}
+    {% block body %}
+        {% load static %}
+        <style>
+            .flexy{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        .form1{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            
+        }
+        form{
+            padding:30px;
+        }
+        .close {
+            position: absolute;
+            top: 3px;
+            right: 8px;
+            font-size: 25px;
+            color: rgb(255, 255, 255);
+            transform: rotate(45deg);
+            cursor: pointer;
+            text-decoration: none;
+            
+        }
+        .back{
+            background-color:rgba(0,0,0,0.4);
+            color: white;
+
+        }
+        btns:hover{
+            background-color:rgba(225,225,225,0.4);
+            color:black;
+        }
+        button{
+            background-color:rgb(103, 175, 220) ;
+            color:white;
+            padding:10px 20px;
+        }
+        .tr1:hover{
+            background:  rgb(202, 202, 13);
+        }
+        a:hover{
+            color: black;
+        }
+    </style>
+
+<div class="row container-fluid p-0 mx-0" >
+    <div class="col-sm-1 m-0  p-0"></div>
+    <div class="col-sm-10 m-0 p-0" style=" width: 100%; background-color:rgba(0,0,0,0.2);" >
+   <!--     <a href="javascript:history.go(-1);" class="close">+</a> -->
+   
+
+
+
+        <div>
+            <h6  class="bg-info text-light m-0 p-2">Ledger Voucher</h6>
+            <div class="row container-fluid p-3 m-0 back">
+        
+            <div class="col-sm-2   m-0 p-0 d-flex">
+                <p>Ledger : {{ vch.particular }}</p>
+                <h6></h6>
+            </div>
+            <div class="col-sm-8   m-0 p-0"></div>
+            <div class="col-sm-2   m-0 p-0">
+                <h6> 1-Apr-22 to 30-Apr-22</h6>
+            </div>
+
+            </div>
+
+            <div style="overflow: scroll ;max-height: 70vh; width: 100%;background-color:rgba(0,0,0,0.4); ">
+                <table class="table ">
+                    <tr style="text-align: center;">
+                        <th scope="col">Date </th>
+                       
+                       
+                        <th scope="col">Particulers</th>
+                        <th scope="col">Vch Type </th>
+                        <th scope="col">Vch No </th>
+                        <th>Debit</th>
+                        <th>Credit</th>
+                        
+                      </tr>
+                      
+
+                     
+                       
+                      <tr  style="text-align: center;" class="tr1" >
+
+                          <td scope="row">{{ vch.ivdate }}</td>
+                          
+                          <td class=" dropdown " >{{ vch.iaccount }}
+
+                        
+                          </td>
+                          <td scope="row">{{ vch.ivouchertype }}</td>
+                          <td scope="row">{{ vch.ivoucherno }}</td>
+                          <td scope="row">{{ vch.idebit }}</td>
+                          <td scope="row">{{ vch.icredit }}</td>
+                          <td>
+
+                              
+                          </td>
+
+                   
+                   
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                       
+                      </tr>
+                      <tr >
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Opening Balance :<br>current Total :<br><b>Closing Balance :</b></td>
+                        <td scope="row" style="text-align: center;"><br>{{ sum2 }}<br><b>{{ clsum }}</b></td>
+                        <td style="text-align: center;"> {{ sum3 }}<br><br><b>{{ sum1 }}</b></td>
+                      </tr>
+                   
+                      
+                      
+                      
+                     
+                      
+
+                </table>
+
+
+            </div>
+       
+        </div> 
+    </div></div>
+     
+    
+{% endblock %}

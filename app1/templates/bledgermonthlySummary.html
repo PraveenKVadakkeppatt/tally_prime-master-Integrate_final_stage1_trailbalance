@@ -1,0 +1,194 @@
+
+
+    {% extends 'base.html' %}
+    {% block body %}
+        {% load static %}
+        <style>
+            .flexy{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        .form1{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            
+        }
+        form{
+            padding:30px;
+        }
+        .close {
+            position: absolute;
+            top: 3px;
+            right: 8px;
+            font-size: 25px;
+            color: rgb(255, 255, 255);
+            transform: rotate(45deg);
+            cursor: pointer;
+            text-decoration: none;
+            
+        }
+        .back{
+            background-color:rgba(0,0,0,0.4);
+            color: white;
+
+        }
+        btns:hover{
+            background-color:rgba(225,225,225,0.4);
+            color:black;
+        }
+        button{
+            background-color:rgb(103, 175, 220) ;
+            color:white;
+            padding:10px 20px;
+        }
+        .tr1:hover{
+            background:  rgb(202, 202, 13);
+        }
+        a:hover{
+            color: black;
+        }
+    </style>
+    
+     <div class="row container-fluid p-0 mx-0" >
+        <div class="col-sm-1 m-0  p-0"></div>
+        <div class="col-sm-10 m-0 p-0" style=" width: 100%; background-color:rgba(0,0,0,0.2);" >
+
+        <div>
+            <h6  class="bg-info text-light m-0 p-2">Ledger Monthly Summary</h6>
+            <div class="row container-fluid p-3 m-0 back">
+        
+            <div class="col-sm-2   m-0 p-0 d-flex" >
+             
+                <h4>Particulers</h4>
+            </div>
+            <div class="col-sm-3   m-0 p-0" ></div>
+            <div class="col-sm-2   m-0 p-0" style="text-align: center;">
+                <p style="padding-left: 30px;">{{ vch.particular }}</p>
+                <p style="padding-left: 30px;"><b>info</b></p>
+                <h6 style="padding-left: 30px;">For 1-Apr-22</h6>
+                <p style="padding-left: 30px;">Transactions</p>
+            </div>
+
+            </div>
+
+            <div style="overflow: scroll ;max-height: 70vh; width: 100%;background-color:rgba(0,0,0,0.4); ">
+                <table class="table ">
+                    <div>
+                       
+                        
+                       <th></th>
+                       
+                        <th scope="col" class="col-sm3 m-0 p-0" style="text-align: center;"> Credit &nbsp
+                         Debit  </th>
+                         <th class="col-sm2 m-0 p-0">Closing Balances</th>
+                       
+                      
+                        </div>
+                      <tr>
+                        <th scope="col">Opening Balance</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                     
+                      
+                      <tr class="tr1">
+                      
+                        
+                        <td scope="row"><a href="{% url 'bledgervoucher' vch.id %}">April</a></td>
+                        <td class="col-sm-2 m-0 p-0" style="text-align: center;">{{ vch.credit }}  &nbsp&nbsp {{ vch.debit }}
+                       </td>
+                       <td>{{ cltot }}Dr</td>
+
+                      
+                      </tr></a>
+                      <tr class="tr1">
+                        <td>May</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr class="tr1">
+                        <td >June</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr class="tr1">
+                        <td>July</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr class="tr1">
+                        <td>August</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr class="tr1">
+                        <td>September</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr class="tr1">
+                        <td>October</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr class="tr1">
+                        <td>November</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr class="tr1">
+                        <td>December</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr class="tr1">
+                        <td>January</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr class="tr1">
+                        <td>February</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr class="tr1">
+                        <td>March</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                     
+                      <tr>
+                        <th>Grand Total</th>
+                        <td style="text-align: center;">{{ sum1 }} &nbsp&nbsp {{ sum2 }}</td>
+                        <td>{{ cltot }}Dr</td>
+                        
+                      </tr>
+                    
+                     
+                   
+                      
+                      
+                    
+                     
+                      
+
+                </table>
+
+
+            </div>
+       
+        </div> 
+        </div>
+     </div>
+     
+    
+    {% endblock %}

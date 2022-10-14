@@ -1736,3 +1736,60 @@ class ininxvouchert(models.Model):
   iopeningbal=models.IntegerField(null=True)
   idebit=models.IntegerField(null=True)
   icredit=models.IntegerField(null=True)
+
+
+# ----------------------------------------Noufal/trialbalance-----------------------------------------------------------------
+
+class BDvouchert(models.Model):
+  company=models.ForeignKey(Companies,on_delete=models.CASCADE,blank=True,null=True)
+  vdate=models.DateField()
+  ledger=models.ForeignKey(ledgercreation,on_delete=models.CASCADE,null=True)
+  particular=models.CharField(max_length=255)
+  under=models.CharField(max_length=255,null=True)
+  account=models.CharField(max_length=255)
+  vouchertype=models.CharField(max_length=255)
+  voucherno=models.IntegerField()
+  openingbal=models.IntegerField(null=True)
+  debit=models.IntegerField(null=True)
+  credit=models.IntegerField(null=True)
+
+
+class Svouchert(models.Model):
+  company=models.ForeignKey(Companies,on_delete=models.CASCADE,blank=True,null=True)
+  ivdate=models.DateField()
+  iledger=models.ForeignKey(ledgercreation,on_delete=models.CASCADE,null=True)
+  iparticular=models.CharField(max_length=255)
+  iunder=models.CharField(max_length=255,null=True)
+  iaccount=models.CharField(max_length=255)
+  ivouchertype=models.CharField(max_length=255)
+  ivoucherno=models.IntegerField()
+  iopeningbal=models.IntegerField(null=True)
+  idebit=models.IntegerField(null=True)
+  icredit=models.IntegerField(null=True)
+
+
+class Pvouchert(models.Model):
+  company=models.ForeignKey(Companies,on_delete=models.CASCADE,blank=True,null=True)
+  ivdate=models.DateField()
+  iledger=models.ForeignKey(ledgercreation,on_delete=models.CASCADE,null=True)
+  iparticular=models.CharField(max_length=255)
+  iunder=models.CharField(max_length=255,null=True)
+  iaccount=models.CharField(max_length=255)
+  ivouchertype=models.CharField(max_length=255)
+  ivoucherno=models.IntegerField()
+  iopeningbal=models.IntegerField(null=True)
+  idebit=models.IntegerField(null=True)
+  icredit=models.IntegerField(null=True)
+
+class DIvouchert(models.Model):
+  company=models.ForeignKey(Companies,on_delete=models.CASCADE,blank=True,null=True)
+  vdate=models.DateField()
+  ledger=models.ForeignKey(ledgercreation,on_delete=models.CASCADE,null=True)
+  particular=models.CharField(max_length=255)
+  under=models.CharField(max_length=255,null=True)
+  account=models.CharField(max_length=255)
+  vouchertype=models.CharField(max_length=255)
+  voucherno=models.IntegerField()
+  openingbal=models.IntegerField(null=True)
+  debit=models.IntegerField(null=True)
+  credit=models.IntegerField(null=True)

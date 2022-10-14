@@ -712,4 +712,27 @@ urlpatterns = [
     path('voucheradd1',views.voucheradd1,name='voucheradd1'),
     path('vouchadd1',views.vouchadd1,name='vouchadd1'),
     path('ledgervoucher1/<int:pk>',views.ledgervoucher1,name='ledgervoucher1'),
+
+
+    path('bgroupsummery',views.bgroupsummery,name='bgroupsummery'),
+    path('bledgersummary/<int:pk>',views.bledgersummary,name='bledgersummary'),
+    path('bvoucheradd',views.bvoucheradd,name='bvoucheradd'),
+    path('bvouchadd',views.bvouchadd,name='bvouchadd'),
+    path('bledgervoucher/<int:pk>',views.bledgervoucher,name='bledgervoucher'),
+    path('DIgroupsummary',views.DIgroupsummary,name='DIgroupsummary'),
+    path('DIvoucher',views.DIvoucher,name='DIvoucher'),
+    path('DIvouchadd',views.DIvouchadd,name='DIvouchadd'),
+    path('DIledgervoucher/<int:pk>',views.DIledgervoucher,name='DIledgervoucher'),
+    path('Pvoucher',views.Pvoucher,name='Pvoucher'),
+    path('Pgroupsummary',views.Pgroupsummary,name='Pgroupsummary'),
+    path('Pvouchadd',views.Pvouchadd,name='Pvouchadd'),
+    path('pledgersummary/<int:pk>',views.pledgersummary,name='pledgersummary'),
+    path('pledgervoucher/<int:pk>',views.pledgervoucher,name='pledgervoucher'),
+    path('svoucher',views.svoucher,name='svoucher'),
+    path('Svouchadd',views.Svouchadd,name='Svouchadd'),
+    path('Sgroupsummary',views.Sgroupsummary,name='Sgroupsummary'),
+    path('Sledgersummary/<int:pk>',views.Sledgersummary,name='Sledgersummary'),
+    path('Sledgervoucher/<int:pk>',views.Sledgervoucher,name='Sledgervoucher'),
+    path('DIledgersummary/<int:pk>',views.DIledgersummary,name='DIledgersummary'),
+
      ]
